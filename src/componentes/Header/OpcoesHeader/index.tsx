@@ -1,15 +1,31 @@
-import estilo from './estilo.module.css';
+import styled from 'styled-components';
 
 interface Props {
     textoOpcoes: string[],
 }
 
+const Opcao = styled.li`
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 0 5px;
+    cursor: pointer;
+    min-width: 120px;
+`
+
+const Opcoes = styled.ul`
+    display: flex;
+`
+
 export default function OpcoesHeader({ textoOpcoes }: Props) {
     return (
-        <ul className={estilo.opcoes}>
+        <Opcoes>
             {textoOpcoes.map((texto) => (
-                <li className={estilo.opcao}><p>{texto}</p></li>
+                <Opcao><p>{texto}</p></Opcao>
             ))}
-        </ul>
+        </Opcoes>
     );
 }

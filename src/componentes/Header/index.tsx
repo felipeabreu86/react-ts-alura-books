@@ -12,10 +12,11 @@ const HeaderContainer = styled.header`
     justify-content: center;
 `
 
-const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE'];
-const icones = [perfil, sacola];
-
 export default function Header() {
+
+    const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE'];
+    const icones = [perfil, sacola];
+
     return (
         <HeaderContainer>
             <Logo />
