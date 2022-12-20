@@ -1,5 +1,7 @@
-import { livros } from './dadosUltimosLancamentos'
 import styled from 'styled-components'
+import { livros } from './dadosUltimosLancamentos'
+import { Titulo } from '../Titulo';
+import { v4 as uuidv4 } from 'uuid';
 
 //#region   Componentes Estilizados
 const UltimosLancamentosContainer = styled.section`
@@ -7,16 +9,6 @@ const UltimosLancamentosContainer = styled.section`
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-`
-
-const Titulo = styled.h2`
-    width: 100%;
-    padding: 30px 0;
-    background-color: #FFF;
-    color: #EB9B00;
-    font-size: 26px;
-    text-align: center;
-    margin: 0;
 `
 
 const NovosLivrosContainer = styled.div`
@@ -31,10 +23,15 @@ const NovosLivrosContainer = styled.div`
 export default function UltimosLancamentos() {
     return (
         <UltimosLancamentosContainer>
-            <Titulo>ÚLTIMOS LANÇAMENTOS:</Titulo>
+            <Titulo
+                cor={"#EB9B00"}
+                tamanhoFonte={26}
+                alinhamento={"center"}
+            >ÚLTIMOS LANÇAMENTOS:</Titulo>
+
             <NovosLivrosContainer>
                 {livros.map(livro => (
-                    <img src={livro.src} />
+                    <img key={uuidv4()} src={livro.src} />
                 ))}
             </NovosLivrosContainer>
         </UltimosLancamentosContainer>
