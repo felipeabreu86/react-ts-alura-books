@@ -48,23 +48,24 @@ export default function Pesquisa() {
 
     const [livrosPesquisados, setLivrosPesquisados] = useState<any[] | never[]>([]);
 
+    function handleOnChange(evento: any) {
+        const textoDigitado = evento.target.value.toUpperCase().trim();
+        if (textoDigitado == '') {
+            setLivrosPesquisados([]);
+        } else {
+            const resultadoPesquisa = livros
+                .filter(livro => livro.nome.toUpperCase().includes(textoDigitado));
+            setLivrosPesquisados(resultadoPesquisa);
+        }
+    }
+
     return (
         <PesquisaContainer>
             <Titulo>Já sabe por onde começar?</Titulo>
             <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
             <Input
                 placeholder="Escreva sua próxima leitura"
-                onBlur={(evento) => {
-                    const textoDigitado = evento.target.value.toUpperCase().trim();
-
-                    if (textoDigitado == '') {
-                        setLivrosPesquisados([]);
-                    } else {
-                        const resultadoPesquisa = livros
-                            .filter(livro => livro.nome.toUpperCase().includes(textoDigitado));
-                        setLivrosPesquisados(resultadoPesquisa);
-                    }
-                }} />
+                onChange={handleOnChange} />
             {livrosPesquisados.map(livro => (
                 <Resultado key={uuidv4()}>
                     <p>{livro.nome}</p>
