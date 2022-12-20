@@ -4,7 +4,7 @@ import { Input } from "../Input";
 import { useState } from 'react';
 import { livros } from './dadosPesquisa';
 
-
+//#region   Componentes Estilizados
 const PesquisaContainer = styled.section`
     background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
     color: #FFF;
@@ -43,11 +43,13 @@ const Resultado = styled.div`
         border: 1px solid white;
     }
 `
+//#endregion   Componentes Estilizados
 
 export default function Pesquisa() {
 
     const [livrosPesquisados, setLivrosPesquisados] = useState<any[] | never[]>([]);
 
+    //#region   Funções do Tipo Handle
     function handleOnChange(evento: any) {
         const textoDigitado = evento.target.value.toUpperCase().trim();
         if (textoDigitado == '') {
@@ -58,6 +60,7 @@ export default function Pesquisa() {
             setLivrosPesquisados(resultadoPesquisa);
         }
     }
+    //#endregion    Funções
 
     return (
         <PesquisaContainer>
