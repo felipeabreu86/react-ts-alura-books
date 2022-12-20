@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 import { Input } from "../Input";
 import { useState } from 'react';
 import { livros } from './dadosPesquisa';
@@ -26,9 +27,26 @@ const Subtitulo = styled.h3`
     margin-bottom: 40px;
 `
 
+const Resultado = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    p {
+        width: 200px;
+    }
+    img {
+        width: 100px;
+    }
+    &:hover {
+        border: 1px solid white;
+    }
+`
+
 export default function Pesquisa() {
 
-    const [livrosPesquisados, setLivrosPesquisados] = useState<any[]>([]);
+    const [livrosPesquisados, setLivrosPesquisados] = useState<any[] | never[]>([]);
 
     return (
         <PesquisaContainer>
@@ -37,11 +55,22 @@ export default function Pesquisa() {
             <Input
                 placeholder="Escreva sua próxima leitura"
                 onBlur={(evento) => {
-                    const textoDigitado = evento.target.value;
-                    const resultadoPesquisa = livros
-                        .filter(livro => livro.nome.includes(textoDigitado));
-                    setLivrosPesquisados(resultadoPesquisa);
+                    const textoDigitado = evento.target.value.toUpperCase().trim();
+
+                    if (textoDigitado == '') {
+                        setLivrosPesquisados([]);
+                    } else {
+                        const resultadoPesquisa = livros
+                            .filter(livro => livro.nome.toUpperCase().includes(textoDigitado));
+                        setLivrosPesquisados(resultadoPesquisa);
+                    }
                 }} />
+            {livrosPesquisados.map(livro => (
+                <Resultado key={uuidv4()}>
+                    <p>{livro.nome}</p>
+                    <img src={livro.src} />
+                </Resultado>
+            ))}
         </PesquisaContainer>
     );
 }

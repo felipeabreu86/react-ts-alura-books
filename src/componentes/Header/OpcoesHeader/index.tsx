@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+
 
 interface Props {
     textoOpcoes: string[],
@@ -24,7 +26,7 @@ export default function OpcoesHeader({ textoOpcoes }: Props) {
     return (
         <Opcoes>
             {textoOpcoes.map((texto) => (
-                <Opcao><p>{texto}</p></Opcao>
+                <Opcao key={uuidv4()}><p>{texto}</p></Opcao>
             ))}
         </Opcoes>
     );

@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+
 
 interface Props {
     icones: string[],
@@ -18,7 +20,7 @@ export default function IconesHeader({ icones }: Props) {
     return (
         <Icones>
             {icones.map((icone) => (
-                <Icone><img src={icone} /></Icone>
+                <Icone key={uuidv4()}><img src={icone} /></Icone>
             ))}
         </Icones>
     );
