@@ -7,7 +7,7 @@ type PropTypeTitulo = {
     alinhamento?: string;
 };
 
-export const Titulo = styled.div.attrs((props: PropTypeTitulo) => ({
+export const Titulo = styled.h2.attrs((props: PropTypeTitulo) => ({
     cor: props.cor,
     tamanhoFonte: props.tamanhoFonte,
     alinhamento: props.alinhamento,
@@ -19,4 +19,4 @@ export const Titulo = styled.div.attrs((props: PropTypeTitulo) => ({
     font-size: ${(props) => props.tamanhoFonte || 36}px;
     text-align: ${(props) => props.alinhamento || "center"};
     margin: 0;
-    `
+`

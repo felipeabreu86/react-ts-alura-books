@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+import { v4 as uuidv4 } from 'uuid';
 import { livros } from './dadosUltimosLancamentos'
 import { Titulo } from '../Titulo';
-import { v4 as uuidv4 } from 'uuid';
+import CardRecomenda from '../CardRecomenda';
+import imagemLivro from './../../imagens/livro2.png';
 
 //#region   Componentes Estilizados
 const UltimosLancamentosContainer = styled.section`
@@ -34,6 +36,20 @@ export default function UltimosLancamentos() {
                     <img key={uuidv4()} src={livro.src} />
                 ))}
             </NovosLivrosContainer>
+
+            <CardRecomenda
+                titulo={"Talvez você se interesse por..."}
+                subtitulo={"Angular 10"}
+                descricao={"Construindo uma aplicação integrada com a plataforma Google"}
+                imagem={imagemLivro}
+            />
+
+            <CardRecomenda
+                titulo={"Talvez você se interesse por..."}
+                subtitulo={"Angular 11"}
+                descricao={"Construindo uma aplicação integrada com a plataforma Google"}
+                imagem={imagemLivro}
+            />
         </UltimosLancamentosContainer>
     );
 }
