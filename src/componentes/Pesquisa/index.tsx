@@ -6,12 +6,12 @@ import { livros } from './dadosPesquisa';
 
 //#region   Componentes Estilizados
 const PesquisaContainer = styled.section`
-    background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
     color: #FFF;
     text-align: center;
-    padding: 85px 0;
+    padding: 90px 0;
     height: 270px;
     width: 100%;
+    margin-bottom: 75px;
 `
 
 const Titulo = styled.h2`
@@ -27,11 +27,16 @@ const Subtitulo = styled.h3`
     margin-bottom: 40px;
 `
 
-const Resultado = styled.div`
+const ResultadoContainer = styled.section`
     display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+const Resultado = styled.div`
+    display: block;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
     cursor: pointer;
     p {
         width: 200px;
@@ -49,7 +54,7 @@ export default function Pesquisa() {
 
     const [livrosPesquisados, setLivrosPesquisados] = useState<any[] | never[]>([]);
 
-    //#region   Funções do Tipo Handle
+    //#region   Funções Handle de Eventos
     function handleOnChange(evento: any) {
         const textoDigitado = evento.target.value.toUpperCase().trim();
         if (textoDigitado == '') {
@@ -65,16 +70,21 @@ export default function Pesquisa() {
     return (
         <PesquisaContainer>
             <Titulo>Já sabe por onde começar?</Titulo>
+
             <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
+
             <Input
                 placeholder="Escreva sua próxima leitura"
                 onChange={handleOnChange} />
-            {livrosPesquisados.map(livro => (
-                <Resultado key={uuidv4()}>
-                    <p>{livro.nome}</p>
-                    <img src={livro.src} />
-                </Resultado>
-            ))}
+
+            <ResultadoContainer>
+                {livrosPesquisados.map(livro => (
+                    <Resultado key={uuidv4()}>
+                        <img src={livro.src} />
+                        <p>{livro.nome}</p>
+                    </Resultado>
+                ))}
+            </ResultadoContainer>
         </PesquisaContainer>
     );
 }
